@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -6,45 +6,28 @@ dataSources:
     name: MakiLottery
     network: matic
     source:
-      address: "0xF8E5067d0E7b813C0Aab5CE8BA2909CE3F15D7c8"
+      address: "0x8ef827EcdA1096Da2cD7a584b21B851518f96c05"
       abi: MakiLottery
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - AdminTokenRecovery
-        - LotteryClose
-        - LotteryInjection
-        - LotteryNumberDrawn
-        - LotteryOpen
-        - NewOperatorAndTreasuryAndInjectorAddresses
-        - NewRandomGenerator
-        - OwnershipTransferred
-        - TicketsClaim
-        - TicketsPurchase
+        - Lottery
+        - User
+        - Round
       abis:
         - name: MakiLottery
           file: ./abis/MakiLottery.json
       eventHandlers:
-        - event: AdminTokenRecovery(address,uint256)
-          handler: handleAdminTokenRecovery
-        - event: LotteryClose(indexed uint256,uint256)
-          handler: handleLotteryClose
-        - event: LotteryInjection(indexed uint256,uint256)
-          handler: handleLotteryInjection
-        - event: LotteryNumberDrawn(indexed uint256,uint256,uint256)
-          handler: handleLotteryNumberDrawn
         - event: LotteryOpen(indexed uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleLotteryOpen
-        - event: NewOperatorAndTreasuryAndInjectorAddresses(address,address,address)
-          handler: handleNewOperatorAndTreasuryAndInjectorAddresses
-        - event: NewRandomGenerator(indexed address)
-          handler: handleNewRandomGenerator
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: TicketsClaim(indexed address,uint256,indexed uint256,uint256)
-          handler: handleTicketsClaim
+        - event: LotteryClose(indexed uint256,uint256)
+          handler: handleLotteryClose
+        - event: LotteryNumberDrawn(indexed uint256,uint256,uint256)
+          handler: handleLotteryNumberDrawn
         - event: TicketsPurchase(indexed address,indexed uint256,uint256)
           handler: handleTicketsPurchase
+        - event: TicketsClaim(indexed address,uint256,indexed uint256,uint256)
+          handler: handleTicketsClaim
       file: ./src/mapping.ts
