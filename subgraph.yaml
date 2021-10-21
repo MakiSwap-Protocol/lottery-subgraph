@@ -6,7 +6,7 @@ dataSources:
     name: MakiLottery
     network: matic
     source:
-      address: "0xd62CeB4b322E333aEf5fa06b4A0E732A9660ff99"
+      address: "0x65c87aA0f0Cf2823E87F1Afe687104AC50Ee48e1"
       abi: MakiLottery
     mapping:
       kind: ethereum/events
